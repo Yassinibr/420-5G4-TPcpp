@@ -3,11 +3,11 @@
 using namespace std;
 
 Book::Book()
-    : title(""), author(""), isbn(""), isAvailable(true), borrowerId("") {
+    : title(""), author(""), isbn(""), isAvailable(true), borrowerName("") {
 }
 
 Book::Book(const string& title, const string& author, const string& isbn)
-    : title(title), author(author), isbn(isbn), isAvailable(true), borrowerId("") {
+    : title(title), author(author), isbn(isbn), isAvailable(true), borrowerName("") {
 }
 
 string Book::getTitle() const {
@@ -26,8 +26,8 @@ bool Book::getAvailability() const {
     return isAvailable;
 }
 
-string Book::getBorrowerId() const {
-    return borrowerId;
+string Book::getBorrowerName() const {
+    return borrowerName;
 }
 
 void Book::setTitle(const string& title) {
@@ -46,20 +46,20 @@ void Book::setAvailability(bool available) {
     isAvailable = available;
 }
 
-void Book::setBorrowerId(const string& id) {
-    borrowerId = id;
+void Book::setBorrowerName(const string& name) {
+    borrowerName = name;
 }
 
-void Book::checkOut(const string& borrowerId) {
+void Book::checkOut(const string& borrowerName) {
     if (isAvailable) {
         isAvailable = false;
-        this->borrowerId = borrowerId;
+        this->borrowerName = borrowerName;
     }
 }
 
 void Book::returnBook() {
     isAvailable = true;
-    borrowerId = "";
+    borrowerName = "";
 }
 
 string Book::toString() const {
@@ -69,7 +69,7 @@ string Book::toString() const {
                     ", Available: " + (isAvailable ? "Yes" : "No");
 
     if (!isAvailable) {
-        result += ", Borrower ID: " + borrowerId;
+        result += ", Borrower Name: " + borrowerName;
     }
 
     return result;
@@ -77,7 +77,7 @@ string Book::toString() const {
 
 string Book::toFileFormat() const {
     return title + "|" + author + "|" + isbn + "|" +
-           (isAvailable ? "1" : "0") + "|" + borrowerId;
+           (isAvailable ? "1" : "0") + "|" + borrowerName;
 }
 
 void Book::fromFileFormat(const string& line) {
@@ -90,5 +90,5 @@ void Book::fromFileFormat(const string& line) {
     author = line.substr(pos1 + 1, pos2 - pos1 - 1);
     isbn = line.substr(pos2 + 1, pos3 - pos2 - 1);
     isAvailable = line.substr(pos3 + 1, pos4 - pos3 - 1) == "1";
-    borrowerId = line.substr(pos4 + 1);
+    borrowerName = line.substr(pos4 + 1);
 }

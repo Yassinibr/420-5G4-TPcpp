@@ -1,11 +1,8 @@
-# Build CMake
 build/
 
-# Fichiers binaires
 *.o
 *.out
 *.exe
 
-# Exécutables générés
 bibliotheque
 prog

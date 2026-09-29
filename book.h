@@ -11,7 +11,7 @@ private:
     string author;
     string isbn;
     bool isAvailable;
-    string borrowerId;
+    string borrowerName;
 
 public:
     // Constructors
@@ -23,14 +23,14 @@ public:
     string getAuthor() const;
     string getISBN() const;
     bool getAvailability() const;
-    string getBorrowerId() const;
+    string getBorrowerName() const;
 
     // Setters
     void setTitle(const string& title);
     void setAuthor(const string& author);
     void setISBN(const string& isbn);
     void setAvailability(bool available);
-    void setBorrowerId(const string& id);
+    void setBorrowerName(const string& id);
 
     // Methods
     void checkOut(const string& borrowerId);
