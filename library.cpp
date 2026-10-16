@@ -85,9 +85,16 @@ vector<Book*> Library::getAvailableBooks() {
 // Get all books
 vector<Book*> Library::getAllBooks() {
     vector<Book*> allBooks;
+
     for (auto& book : books) {
         allBooks.push_back(book.get());
     }
+
+    sort(allBooks.begin(), allBooks.end(),
+        [](Book* a, Book* b) {
+            return a->getTitle() < b->getTitle();
+        });
+
     return allBooks;
 }
 
