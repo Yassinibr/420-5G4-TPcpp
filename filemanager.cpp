@@ -23,6 +23,11 @@ void FileManager::logActivity(const string& activity) {
 
 // Save all library data
 bool FileManager::saveLibraryData(Library& library) {
+    if (booksFileName.empty() || usersFileName.empty()) {
+        cout << "Sauvegarde ignorée : aucun répertoire de données n'a été spécifié.\n";
+        return false;
+    }
+
     return saveBooksToFile(library) && saveUsersToFile(library);
 }
 
