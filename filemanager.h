@@ -19,6 +19,7 @@ public:
     // File operations
     bool saveLibraryData(Library& library);
     bool loadLibraryData(Library& library);
+    void logActivity(const string& activity);
     
     // Individual file operations
     bool saveBooksToFile(Library& library);

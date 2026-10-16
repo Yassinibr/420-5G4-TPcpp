@@ -9,6 +9,18 @@ using namespace std;
 FileManager::FileManager(const string& booksFile, const string& usersFile)
     : booksFileName(booksFile), usersFileName(usersFile) {}
 
+void FileManager::logActivity(const string& activity) {
+    ofstream file("activity.log", ios::app);
+
+    if (!file.is_open()) {
+        cout << "Erreur : Impossible d'ouvrir le journal d'activité.\n";
+        return;
+    }
+
+    file << activity << "\n";
+    file.close();
+}
+
 // Save all library data
 bool FileManager::saveLibraryData(Library& library) {
     return saveBooksToFile(library) && saveUsersToFile(library);

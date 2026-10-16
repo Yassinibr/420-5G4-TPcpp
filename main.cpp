@@ -113,6 +113,7 @@ int main(int argc, char* argv[]) {
                 } else {
                     Book newBook(title, author, isbn);
                     library.addBook(newBook);
+                    fileManager.logActivity("Livre ajouté : " + title + " (ISBN : " + isbn + ")");
                     cout << "Livre ajouté avec succès !\n";
                 }
                 pauseForInput();
@@ -123,6 +124,7 @@ int main(int argc, char* argv[]) {
                 string isbn = getInput("Entrez l'ISBN du livre à supprimer : ");
                 
                 if (library.removeBook(isbn)) {
+                    fileManager.logActivity("Livre supprimé (ISBN : " + isbn + ")");
                     cout << "Livre supprimé avec succès !\n";
                 } else {
                     cout << "Livre non trouvé.\n";
@@ -182,7 +184,7 @@ int main(int argc, char* argv[]) {
 
                 User newUser(name, "");
                 string userId = library.addUser(newUser);
-
+                fileManager.logActivity("Utilisateur ajouté : " + name + " (ID : " + userId + ")");
                 cout << "Utilisateur ajouté avec succès ! ID : " << userId << "\n";
 
                 pauseForInput();
@@ -199,8 +201,9 @@ int main(int argc, char* argv[]) {
                 string userId = getInput("Entrez l'ID de l'utilisateur : ");
                 
                 if (library.checkOutBook(isbn, userId)) {
-                    cout << "Livre emprunté avec succès !\n";
-                } else {
+                        fileManager.logActivity("Livre emprunté (ISBN : " + isbn + ", utilisateur : " + userId + ")");
+                        cout << "Livre emprunté avec succès !\n";
+                    } else {
                     cout << "Erreur : Impossible d'emprunter le livre. Vérifiez l'ISBN, l'ID utilisateur et la disponibilité du livre.\n";
                 }
                 pauseForInput();
@@ -211,6 +214,7 @@ int main(int argc, char* argv[]) {
                 string isbn = getInput("Entrez l'ISBN du livre à retourner : ");
                 
                 if (library.returnBook(isbn)) {
+                    fileManager.logActivity("Livre retourné (ISBN : " + isbn + ")");
                     cout << "Livre retourné avec succès !\n";
                 } else {
                     cout << "Erreur : Impossible de retourner le livre. Vérifiez l'ISBN et que le livre est bien emprunté.\n";
